@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. COUNTDOWN TIMER CONTROLLER ---
     // Set target date for 40 days from deployment (e.g., August 10, 2026)
-    const TARGET_DATE_STRING = "August 10, 2026 00:00:00"; 
+    const TARGET_DATE_STRING = "August 8, 2026 00:00:00"; 
     const targetTime = new Date(TARGET_DATE_STRING).getTime();
 
     const countdownTimer = setInterval(() => {
