@@ -1,33 +1,79 @@
 /**
  * KKN Board Control Script
- * Handling Navigations, Dark Mode, Countdown, Dropdowns, and Accordions.
+ * Handling Navigations, Dark Mode, Countdown, Realtime Clock, Dropdowns, and Accordions.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. FLOATING NAVIGATION CONTROLLER ---
+    // --- 1. FITUR BARU: WAKTU & TANGGAL REALTIME ---
+    const realtimeDateEl = document.getElementById('realtimeDate');
+    
+    function updateRealtimeClock() {
+        const sekarang = new Date();
+        
+        // Opsi format bahasa Indonesia
+        const opsiTanggal = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const tanggalStr = sekarang.toLocaleDateString('id-ID', opsiTanggal);
+        
+        // Format jam (HH:MM:SS)
+        const jamStr = String(sekarang.getHours()).padStart(2, '0');
+        const menitStr = String(sekarang.getMinutes()).padStart(2, '0');
+        const detikStr = String(sekarang.getSeconds()).padStart(2, '0');
+        
+        // Menyatukan format ke dalam HTML
+        if (realtimeDateEl) {
+            realtimeDateEl.textContent = `${tanggalStr} | ${jamStr}:${menitStr}:${detikStr} WIB`;
+        }
+    }
+    
+    updateRealtimeClock(); // Panggil sekali langsung saat muat
+    setInterval(updateRealtimeClock, 1000); // Perbarui setiap 1 detik
+
+
+    // --- 2. FLOATING NAVIGATION & MENU HINT CONTROLLER ---
     const menuToggle = document.getElementById('menuToggle');
     const navigationMenu = document.getElementById('navigationMenu');
     const navLinks = document.querySelectorAll('.navigation-menu ul li a');
+    
+    // Fitur Baru: Pengontrol Petunjuk Menu (Tooltip)
+    const menuHint = document.getElementById('menuHint');
+    let hintTimeout;
 
+    // Petunjuk akan hilang otomatis setelah 4.5 detik sejak web dibuka
+    if (menuHint) {
+        hintTimeout = setTimeout(() => {
+            menuHint.classList.add('fade-out');
+        }, 4500);
+    }
+
+    // Aksi saat tombol titik tiga diklik
     menuToggle.addEventListener('click', (event) => {
         event.stopPropagation();
         navigationMenu.classList.toggle('is-active');
+        
+        // Sembunyikan petunjuk seketika saat tombol menu diklik (meski belum 4.5 detik)
+        if (menuHint && !menuHint.classList.contains('fade-out')) {
+            menuHint.classList.add('fade-out');
+            clearTimeout(hintTimeout); // Hentikan timer otomatis
+        }
     });
 
+    // Menutup menu saat link dipilih
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navigationMenu.classList.remove('is-active');
         });
     });
 
+    // Menutup menu saat area kosong di layar diklik
     document.addEventListener('click', (event) => {
         if (!navigationMenu.contains(event.target) && event.target !== menuToggle) {
             navigationMenu.classList.remove('is-active');
         }
     });
 
-    // --- 2. THEME CONTROLLER (DARK/LIGHT MODE) ---
+
+    // --- 3. THEME CONTROLLER (DARK/LIGHT MODE) ---
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('kknBoardTheme');
     
@@ -48,9 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 3. COUNTDOWN TIMER CONTROLLER ---
-    // Set target date for 40 days from deployment (e.g., August 10, 2026)
-    const TARGET_DATE_STRING = "August 8, 2026 00:00:00"; 
+
+    // --- 4. COUNTDOWN TIMER CONTROLLER ---
+    // Target akhir KKN (Tengah malam pergantian tanggal 8 ke 9 Agustus, atau akhir hari 8 Agustus)
+    const TARGET_DATE_STRING = "August 8, 2026 23:59:59"; 
     const targetTime = new Date(TARGET_DATE_STRING).getTime();
 
     const countdownTimer = setInterval(() => {
@@ -73,7 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
 
-    // --- 4. ACCORDION CONTROLLER FOR RULES SECTION ---
+
+    // --- 5. ACCORDION CONTROLLER FOR RULES SECTION ---
     const accordionTriggers = document.querySelectorAll('.accordion-trigger');
 
     accordionTriggers.forEach(trigger => {
@@ -93,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// --- 5. DROPDOWN CONTROLLER FOR ORGANIZATION STRUCTURE ---
-// Defined outside DOMContentLoaded as it is called via inline HTML onclick attribute
+// --- 6. DROPDOWN CONTROLLER FOR ORGANIZATION STRUCTURE ---
+// Sengaja diletakkan di luar DOMContentLoaded karena dipanggil langsung lewat HTML (onclick)
 function toggleDropdown(element) {
     element.classList.toggle('is-open');
 }
