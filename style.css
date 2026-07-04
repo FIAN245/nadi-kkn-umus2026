@@ -2,60 +2,53 @@
 :root {
     --primary-accent: #2563eb;
     --font-main: 'Plus Jakarta Sans', sans-serif;
-
-    --bg-pattern: rgba(0, 0, 0, 0.05); 
     
     /* LIGHT MODE PALETTE */
-    --bg-hero: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    --text-hero: #1e3a8a;
+    --bg-pattern: rgba(0, 0, 0, 0.05); /* Warna Dot Pattern Terang */
     
+    --text-hero: #1e3a8a;
     --bg-structure: #ffffff;
     --text-structure: #111827;
     --card-structure: #f3f4f6;
     
-    --bg-rules: #fffbeb;
+    --bg-rules: transparent;
     --text-rules: #78350f;
     --border-rules: #f59e0b;
     
-    --bg-proker: #f0fdf4;
+    --bg-proker: transparent;
     --text-proker: #14532d;
     --card-proker: #ffffff;
     
-    --bg-timeline: #ffffff;
+    --bg-timeline: transparent;
     --text-timeline: #1f2937;
     
-    --bg-resources: #0f172a;
-    --text-resources: #f8fafc;
-
+    --bg-resources: transparent;
+    --text-resources: #1e293b;
 }
 
 /* DARK MODE PALETTE CONFIGURATION */
 body.dark-mode {
     --primary-accent: #60a5fa;
-
-    --bg-pattern: rgba(255, 255, 255, 0.04);
+    --bg-pattern: rgba(255, 255, 255, 0.04); /* Warna Dot Pattern Gelap */
     
-    --bg-hero: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
     --text-hero: #e0e7ff;
-    
     --bg-structure: #111827;
     --text-structure: #f9fafb;
     --card-structure: #1f2937;
     
-    --bg-rules: #1e1505;
+    --bg-rules: transparent;
     --text-rules: #fef3c7;
     --border-rules: #d97706;
     
-    --bg-proker: #022c22;
+    --bg-proker: transparent;
     --text-proker: #f0fdf4;
-    --card-proker: #064e3b;
+    --card-proker: #1e293b;
     
-    --bg-timeline: #111827;
+    --bg-timeline: transparent;
     --text-timeline: #e5e7eb;
     
-    --bg-resources: #020617;
+    --bg-resources: transparent;
     --text-resources: #f1f5f9;
-
 }
 
 * {
@@ -73,7 +66,7 @@ body {
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
     
-    /* FITUR BARU: Latar Belakang Pola Titik (Dot Pattern) */
+    /* Dot Pattern Background System */
     background-color: var(--bg-structure);
     background-image: radial-gradient(var(--bg-pattern) 1.5px, transparent 1.5px);
     background-size: 25px 25px;
@@ -85,6 +78,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: transparent; /* Agar pattern body terlihat */
 }
 
 .section-container {
@@ -123,12 +117,47 @@ body.dark-mode .theme-toggle-btn {
     color: #1e293b;
 }
 
-/* --- FLOATING NAVIGATION --- */
+/* --- FLOATING NAVIGATION & TOOLTIP --- */
 .floating-nav-container {
     position: fixed;
     bottom: 30px;
     right: 30px;
     z-index: 3000;
+}
+
+.menu-hint {
+    position: absolute;
+    right: 75px; 
+    bottom: 12px;
+    background-color: var(--primary-accent);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    pointer-events: none; 
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.menu-hint::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--primary-accent);
+}
+
+.menu-hint.fade-out {
+    opacity: 0;
+    transform: translateX(10px);
+    visibility: hidden;
 }
 
 .menu-toggle-btn {
@@ -174,10 +203,7 @@ body.dark-mode .navigation-menu {
     transform: translateY(0) scale(1);
 }
 
-.navigation-menu ul {
-    list-style: none;
-}
-
+.navigation-menu ul { list-style: none; }
 .navigation-menu ul li a {
     display: block;
     padding: 10px 12px;
@@ -189,10 +215,7 @@ body.dark-mode .navigation-menu {
     transition: background 0.2s ease;
 }
 
-body.dark-mode .navigation-menu ul li a {
-    color: #e2e8f0;
-}
-
+body.dark-mode .navigation-menu ul li a { color: #e2e8f0; }
 .navigation-menu ul li a:hover {
     background: rgba(0, 0, 0, 0.05);
     color: var(--primary-accent);
@@ -200,7 +223,6 @@ body.dark-mode .navigation-menu ul li a {
 
 /* --- SECTION 1: HERO & COUNTDOWN --- */
 .hero-section {
-    background: var(--bg-hero);
     color: var(--text-hero);
     text-align: center;
 }
@@ -223,8 +245,22 @@ body.dark-mode .navigation-menu ul li a {
 .sub-hero {
     font-size: 1.1rem;
     opacity: 0.8;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
 }
+
+.realtime-date {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-accent);
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+body.dark-mode .realtime-date { background: rgba(96, 165, 250, 0.15); }
 
 .countdown-wrapper h3 {
     font-size: 1rem;
@@ -242,17 +278,16 @@ body.dark-mode .navigation-menu ul li a {
 }
 
 .countdown-box {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
     padding: 16px;
     border-radius: 12px;
     min-width: 80px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
-body.dark-mode .countdown-box {
-    background: rgba(15, 23, 42, 0.4);
-}
+body.dark-mode .countdown-box { background: rgba(30, 41, 59, 0.6); border-color: rgba(255,255,255,0.05); }
 
 .countdown-box span {
     display: block;
@@ -260,21 +295,12 @@ body.dark-mode .countdown-box {
     font-weight: 700;
 }
 
-.countdown-box label {
-    font-size: 0.75rem;
-    opacity: 0.7;
-}
+.countdown-box label { font-size: 0.75rem; opacity: 0.7; }
 
-/* --- SECTION 2: STRUCTURE (DROPDOWN MOD) --- */
-.structure-section {
-    background: var(--bg-structure);
-    color: var(--text-structure);
-}
+/* --- SECTION 2: STRUCTURE (DROPDOWN) --- */
+.structure-section { color: var(--text-structure); }
 
-.org-group {
-    margin-bottom: 40px;
-}
-
+.org-group { margin-bottom: 40px; }
 .org-group h3 {
     margin-bottom: 20px;
     font-size: 1.2rem;
@@ -307,9 +333,7 @@ body.dark-mode .countdown-box {
     border: 1px solid transparent;
 }
 
-.structure-card:hover {
-    border-color: var(--primary-accent);
-}
+.structure-card:hover { border-color: var(--primary-accent); }
 
 .structure-card h4 {
     font-size: 1.1rem;
@@ -317,11 +341,7 @@ body.dark-mode .countdown-box {
     color: var(--primary-accent);
 }
 
-.structure-card span {
-    font-size: 0.9rem;
-    font-weight: 600;
-    opacity: 0.8;
-}
+.structure-card span { font-size: 0.9rem; font-weight: 600; opacity: 0.8; }
 
 .jobdesk-dropdown {
     max-height: 0;
@@ -332,16 +352,8 @@ body.dark-mode .countdown-box {
     margin-top: 0;
 }
 
-.jobdesk-dropdown p {
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-
-.jobdesk-dropdown ul {
-    list-style-position: inside;
-    margin-left: 10px;
-    opacity: 0.9;
-}
+.jobdesk-dropdown p { margin-bottom: 8px; line-height: 1.5; }
+.jobdesk-dropdown ul { list-style-position: inside; margin-left: 10px; opacity: 0.9; }
 
 .structure-card.is-open .jobdesk-dropdown {
     max-height: 500px;
@@ -360,10 +372,7 @@ body.dark-mode .countdown-box {
 }
 
 /* --- SECTION 3: RULES ACCORDION --- */
-.rules-section {
-    background: var(--bg-rules);
-    color: var(--text-rules);
-}
+.rules-section { color: var(--text-rules); }
 
 .core-principle-box {
     background: var(--primary-accent);
@@ -374,23 +383,10 @@ body.dark-mode .countdown-box {
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
 }
 
-.core-principle-box h3 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    letter-spacing: 0.5px;
-}
+.core-principle-box h3 { margin-bottom: 10px; font-size: 1.2rem; letter-spacing: 0.5px; }
+.core-principle-box p { font-size: 0.95rem; line-height: 1.6; opacity: 0.9; }
 
-.core-principle-box p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-.rules-accordion-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+.rules-accordion-wrapper { display: flex; flex-direction: column; gap: 12px; }
 
 .accordion-trigger {
     background-color: var(--card-structure);
@@ -410,10 +406,7 @@ body.dark-mode .countdown-box {
     border: 1px solid transparent;
 }
 
-.accordion-trigger:hover {
-    border-color: var(--primary-accent);
-}
-
+.accordion-trigger:hover { border-color: var(--primary-accent); }
 .accordion-trigger.is-active {
     background-color: var(--primary-accent);
     color: #ffffff;
@@ -432,9 +425,7 @@ body.dark-mode .countdown-box {
     border-bottom: 1px solid var(--primary-accent);
 }
 
-.accordion-content:not([style*="max-height"]) {
-    border: none; 
-}
+.accordion-content:not([style*="max-height"]) { border: none; }
 
 .accordion-content p {
     padding: 16px 20px;
@@ -443,16 +434,10 @@ body.dark-mode .countdown-box {
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.accordion-content p:last-child {
-    border-bottom: none;
-}
+.accordion-content p:last-child { border-bottom: none; }
 
 /* --- SECTION 4 & 5: PROKER & TIMELINE --- */
-.proker-section {
-    background: var(--bg-proker);
-    color: var(--text-proker);
-}
-
+.proker-section { color: var(--text-proker); }
 .proker-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -463,36 +448,20 @@ body.dark-mode .countdown-box {
     background: var(--card-proker);
     padding: 24px;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-body.dark-mode .proker-card { color: #f0fdf4; }
-
-.proker-type {
-    font-size: 0.75rem;
-    font-weight: 600;
-    opacity: 0.7;
-}
-
+.proker-type { font-size: 0.75rem; font-weight: 600; opacity: 0.7; }
 .proker-card h4 { font-size: 1.2rem; margin: 8px 0; }
 .proker-card p { font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
 
-.timeline-section {
-    background: var(--bg-timeline);
-    color: var(--text-timeline);
-}
-
+.timeline-section { color: var(--text-timeline); }
 .vertical-timeline {
     position: relative;
     padding-left: 30px;
     border-left: 2px solid var(--primary-accent);
 }
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px;
-}
-
+.timeline-item { position: relative; margin-bottom: 40px; }
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -501,157 +470,18 @@ body.dark-mode .proker-card { color: #f0fdf4; }
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--bg-timeline);
+    background: var(--bg-structure);
     border: 2px solid var(--primary-accent);
 }
-
-.timeline-date {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--primary-accent);
-    text-transform: uppercase;
-}
-
+.timeline-date { font-size: 0.8rem; font-weight: 700; color: var(--primary-accent); text-transform: uppercase; }
 .timeline-content h4 { font-size: 1.15rem; margin: 4px 0 8px 0; }
 .timeline-content p { font-size: 0.95rem; opacity: 0.8; line-height: 1.6; }
 
 /* --- SECTION 6: RESOURCES & CONTACT --- */
-.resources-section {
-    background: var(--bg-resources);
-    color: var(--text-resources);
-    text-align: center;
-}
+.resources-section { color: var(--text-resources); text-align: center; }
+.section-subtitle { opacity: 0.7; margin-top: -30px; margin-bottom: 40px; }
 
-.section-subtitle {
-    opacity: 0.7;
-    margin-top: -30px;
-    margin-bottom: 40px;
-}
-
-.drive-container { margin-bottom: 50px; }
-
-.drive-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: #ffffff;
-    color: #0f172a;
-    padding: 16px 28px;
-    border-radius: 12px;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(255,255,255,0.05);
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.drive-btn:hover {
-    transform: translateY(-2px);
-    background: #f1f5f9;
-}
-
-.drive-icon { width: 20px; height: 20px; }
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-}
-
-.whatsapp-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    padding: 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.whatsapp-btn:hover {
-    background: #25D366;
-    border-color: #25D366;
-    color: white;
-}
-
-.whatsapp-btn.emergency:hover {
-    background: #ef4444;
-    border-color: #ef4444;
-}
-
-/* --- MOBILE RESPONSIVE --- */
-@media (max-width: 768px) {
-    .hero-section h1 { font-size: 2rem; }
-    .content-section { padding: 60px 16px; }
-    .theme-toggle-btn { top: auto; bottom: 30px; left: 30px; right: auto; }
-}
-/* --- FITUR BARU: TANGGAL REALTIME --- */
-.sub-hero {
-    margin-bottom: 15px; /* Mengurangi jarak margin sebelumnya */
-}
-
-.realtime-date {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 40px;
-    background: rgba(37, 99, 235, 0.1);
-    color: var(--primary-accent);
-    display: inline-block;
-    padding: 8px 18px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-}
-
-body.dark-mode .realtime-date {
-    background: rgba(96, 165, 250, 0.15);
-}
-
-/* --- FITUR BARU: PETUNJUK MENU (TOOLTIP) --- */
-.menu-hint {
-    position: absolute;
-    right: 75px; /* Jarak dari tombol titik tiga */
-    bottom: 12px;
-    background-color: var(--primary-accent);
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    pointer-events: none; /* Agar tidak menghalangi klik */
-    
-    /* Animasi Buka/Tutup */
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* Membuat segitiga penunjuk arah ke kanan */
-.menu-hint::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -6px;
-    transform: translateY(-50%);
-    border-width: 6px 0 6px 6px;
-    border-style: solid;
-    border-color: transparent transparent transparent var(--primary-accent);
-}
-
-/* Class tambahan yang dipicu JavaScript untuk menyembunyikan petunjuk */
-.menu-hint.fade-out {
-    opacity: 0;
-    transform: translateX(10px);
-    visibility: hidden;
-}
-
-/* --- FITUR BARU: TAUTAN LPPM & MEDIA SOSIAL --- */
-.official-link-container {
-    margin-bottom: 30px;
-}
-
+.official-link-container { margin-bottom: 30px; }
 .lppm-btn {
     display: inline-block;
     background: linear-gradient(135deg, #1e3a8a, #2563eb);
@@ -664,28 +494,31 @@ body.dark-mode .realtime-date {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     border: 1px solid rgba(255,255,255,0.1);
 }
-
 .lppm-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
     color: white;
 }
 
-.social-title {
-    margin: 40px 0 20px 0;
-    font-size: 1.1rem;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.drive-container { margin-bottom: 50px; }
+.drive-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card-structure);
+    color: var(--text-resources);
+    padding: 16px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
 }
+.drive-btn:hover { transform: translateY(-2px); border: 1px solid var(--primary-accent); }
+.drive-icon { width: 20px; height: 20px; }
 
-.social-grid {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
+.social-title { margin: 40px 0 20px 0; font-size: 1.1rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+.social-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
 .social-btn {
     padding: 12px 24px;
     border-radius: 10px;
@@ -695,30 +528,35 @@ body.dark-mode .realtime-date {
     transition: transform 0.2s ease, opacity 0.2s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+.social-btn:hover { transform: translateY(-3px); opacity: 0.9; color: white; }
+.social-btn.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-btn.tiktok { background: #000000; color: #ffffff; }
+.social-btn.fb { background: #1877F2; }
+body.dark-mode .social-btn.tiktok { background: #252525; border: 1px solid rgba(255,255,255,0.1); }
 
-.social-btn:hover {
-    transform: translateY(-3px);
-    opacity: 0.9;
-    color: white;
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
 }
-
-/* Warna khas Media Sosial */
-.social-btn.ig {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+.whatsapp-btn {
+    background: var(--card-structure);
+    border: 1px solid rgba(0,0,0,0.1);
+    color: var(--text-resources);
+    padding: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
+body.dark-mode .whatsapp-btn { border-color: rgba(255,255,255,0.1); }
+.whatsapp-btn:hover { background: #25D366; border-color: #25D366; color: white; }
+.whatsapp-btn.emergency:hover { background: #ef4444; border-color: #ef4444; color: white;}
 
-.social-btn.tiktok {
-    background: #000000;
-    color: #ffffff;
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .hero-section h1 { font-size: 2rem; }
+    .content-section { padding: 60px 16px; }
+    .theme-toggle-btn { top: auto; bottom: 30px; left: 30px; right: auto; }
 }
-
-.social-btn.fb {
-    background: #1877F2;
-}
-
-/* Penyesuaian Tombol TikTok di Mode Gelap */
-body.dark-mode .social-btn.tiktok {
-    background: #252525;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
