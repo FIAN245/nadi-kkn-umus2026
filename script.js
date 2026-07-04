@@ -5,67 +5,63 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. FITUR BARU: WAKTU & TANGGAL REALTIME ---
+    // --- 1. REALTIME CLOCK & DATE ---
     const realtimeDateEl = document.getElementById('realtimeDate');
     
     function updateRealtimeClock() {
         const sekarang = new Date();
         
-        // Opsi format bahasa Indonesia
+        // Format Bahasa Indonesia
         const opsiTanggal = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const tanggalStr = sekarang.toLocaleDateString('id-ID', opsiTanggal);
         
-        // Format jam (HH:MM:SS)
+        // Format Jam (HH:MM:SS)
         const jamStr = String(sekarang.getHours()).padStart(2, '0');
         const menitStr = String(sekarang.getMinutes()).padStart(2, '0');
         const detikStr = String(sekarang.getSeconds()).padStart(2, '0');
         
-        // Menyatukan format ke dalam HTML
         if (realtimeDateEl) {
             realtimeDateEl.textContent = `${tanggalStr} | ${jamStr}:${menitStr}:${detikStr} WIB`;
         }
     }
     
-    updateRealtimeClock(); // Panggil sekali langsung saat muat
-    setInterval(updateRealtimeClock, 1000); // Perbarui setiap 1 detik
+    updateRealtimeClock(); 
+    setInterval(updateRealtimeClock, 1000); 
 
 
-    // --- 2. FLOATING NAVIGATION & MENU HINT CONTROLLER ---
+    // --- 2. FLOATING NAVIGATION & TOOLTIP HINT ---
     const menuToggle = document.getElementById('menuToggle');
     const navigationMenu = document.getElementById('navigationMenu');
     const navLinks = document.querySelectorAll('.navigation-menu ul li a');
     
-    // Fitur Baru: Pengontrol Petunjuk Menu (Tooltip)
     const menuHint = document.getElementById('menuHint');
     let hintTimeout;
 
-    // Petunjuk akan hilang otomatis setelah 4.5 detik sejak web dibuka
+    // Petunjuk hilang otomatis setelah 4.5 detik
     if (menuHint) {
         hintTimeout = setTimeout(() => {
             menuHint.classList.add('fade-out');
         }, 4500);
     }
 
-    // Aksi saat tombol titik tiga diklik
+    // Toggle Menu Klik
     menuToggle.addEventListener('click', (event) => {
         event.stopPropagation();
         navigationMenu.classList.toggle('is-active');
         
-        // Sembunyikan petunjuk seketika saat tombol menu diklik (meski belum 4.5 detik)
+        // Hapus petunjuk seketika saat tombol ditekan
         if (menuHint && !menuHint.classList.contains('fade-out')) {
             menuHint.classList.add('fade-out');
-            clearTimeout(hintTimeout); // Hentikan timer otomatis
+            clearTimeout(hintTimeout);
         }
     });
 
-    // Menutup menu saat link dipilih
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navigationMenu.classList.remove('is-active');
         });
     });
 
-    // Menutup menu saat area kosong di layar diklik
     document.addEventListener('click', (event) => {
         if (!navigationMenu.contains(event.target) && event.target !== menuToggle) {
             navigationMenu.classList.remove('is-active');
@@ -73,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 3. THEME CONTROLLER (DARK/LIGHT MODE) ---
+    // --- 3. THEME CONTROLLER ---
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('kknBoardTheme');
     
@@ -95,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 4. COUNTDOWN TIMER CONTROLLER ---
-    // Target akhir KKN (Tengah malam pergantian tanggal 8 ke 9 Agustus, atau akhir hari 8 Agustus)
+    // --- 4. COUNTDOWN TIMER ---
+    // Target akhir KKN diset pada detik terakhir tanggal 8 Agustus 2026
     const TARGET_DATE_STRING = "August 8, 2026 23:59:59"; 
     const targetTime = new Date(TARGET_DATE_STRING).getTime();
 
@@ -121,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
 
 
-    // --- 5. ACCORDION CONTROLLER FOR RULES SECTION ---
+    // --- 5. ACCORDION CONTROLLER ---
     const accordionTriggers = document.querySelectorAll('.accordion-trigger');
 
     accordionTriggers.forEach(trigger => {
@@ -141,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// --- 6. DROPDOWN CONTROLLER FOR ORGANIZATION STRUCTURE ---
-// Sengaja diletakkan di luar DOMContentLoaded karena dipanggil langsung lewat HTML (onclick)
+// --- 6. DROPDOWN CONTROLLER ---
+// Fungsi ini dipanggil secara inline (onclick) pada HTML
 function toggleDropdown(element) {
     element.classList.toggle('is-open');
 }
