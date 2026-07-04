@@ -2,6 +2,8 @@
 :root {
     --primary-accent: #2563eb;
     --font-main: 'Plus Jakarta Sans', sans-serif;
+
+    --bg-pattern: rgba(0, 0, 0, 0.05); 
     
     /* LIGHT MODE PALETTE */
     --bg-hero: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
@@ -24,14 +26,14 @@
     
     --bg-resources: #0f172a;
     --text-resources: #f8fafc;
-    
-    --bg-pattern: rgba(0, 0, 0, 0.05); 
 
 }
 
 /* DARK MODE PALETTE CONFIGURATION */
 body.dark-mode {
     --primary-accent: #60a5fa;
+
+    --bg-pattern: rgba(255, 255, 255, 0.04);
     
     --bg-hero: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
     --text-hero: #e0e7ff;
@@ -54,7 +56,6 @@ body.dark-mode {
     --bg-resources: #020617;
     --text-resources: #f1f5f9;
 
-    --bg-pattern: rgba(255, 255, 255, 0.04);
 }
 
 * {
