@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Papan Informasi KKN UMUS 2026</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -11,26 +12,30 @@
 </head>
 <body>
 
+    <!-- Theme Toggle Button -->
     <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">🌙 Mode Gelap</button>
 
+    <!-- Floating Navigation Menu -->
     <div class="floating-nav-container">
         <div id="menuHint" class="menu-hint">👋 Klik ini untuk buka menu</div>
         <button id="menuToggle" class="menu-toggle-btn" aria-label="Open Menu">⋮</button>
         <nav id="navigationMenu" class="navigation-menu">
             <ul>
                 <li><a href="#hero-countdown">Beranda & Waktu</a></li>
+                <li><a href="#timeline-rundown">Rundown Harian</a></li>
                 <li><a href="#organization-structure">Struktur Organisasi</a></li>
                 <li><a href="#rules-regulation">Tata Tertib</a></li>
                 <li><a href="#work-program">Rencana Proker</a></li>
-                <li><a href="#timeline-rundown">Rundown Harian</a></li>
                 <li><a href="#resources-contact">Dokumentasi & Kontak</a></li>
             </ul>
         </nav>
     </div>
 
+    <!-- SECTION 1: Hero & Countdown -->
     <section id="hero-countdown" class="content-section hero-section">
         <div class="section-container">
             
+            <!-- SVG Logo Container (Replace the inner SVG with your actual logo code) -->
             <div class="logo-container">
                 <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill="currentColor" d="M12 2L2 22h20L12 2zm0 3.83L18.17 20H5.83L12 5.83z"/>
@@ -41,6 +46,7 @@
             <h1>Tim KKN UMUS 2026</h1>
             <p class="sub-hero">Desa Cipelem & Desa Rancawuluh</p>
             
+            <!-- Realtime Clock Display -->
             <p id="realtimeDate" class="realtime-date">Memuat waktu...</p> 
             
             <div class="countdown-wrapper">
@@ -55,56 +61,71 @@
         </div>
     </section>
 
+    <!-- SECTION 2: Dynamic Google Sheets Timeline (Dipindah ke atas) -->
+    <section id="timeline-rundown" class="content-section timeline-section">
+        <div class="section-container">
+            <h2 class="section-title">Rundown Harian (Live)</h2>
+            <p style="opacity: 0.8; margin-bottom: 30px;">Jadwal harian di bawah ini ditarik secara otomatis dari Google Sheets Divisi Acara.</p>
+            
+            <div id="dynamicRundownContainer" class="dynamic-rundown-container">
+                <div class="loading-state">Mengambil data dari Google Sheets...⏳</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Organization Structure -->
     <section id="organization-structure" class="content-section structure-section">
         <div class="section-container">
             <h2 class="section-title">Struktur Organisasi</h2>
 
+            <!-- DPL Group -->
             <div class="org-group">
                 <h3>Dewan Pendamping Lapangan (DPL)</h3>
                 <div class="member-card">NUR AFRIDA</div>
             </div>
 
+            <!-- Core Board Group -->
             <div class="org-group">
-                <h3>Badan Pengurus Harian (BPH)</h3>
+                <h3>Badan Pengurus Harian (BPH) / Nadi Sentral</h3>
                 <div class="structure-grid">
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Koorcam / Project Manager</h4>
-                        <span>Alfian Abu Nadzir M.</span>
+                        <span>Alfian Abu Nadzir M.<br><small>(T. Informatika - Non Reg)</small></span>
                         <div class="jobdesk-dropdown">
                             <p><strong>Tugas Utama:</strong> Memimpin lobi strategis tingkat kecamatan dan merancang konsep arsitektur inovasi digital desa.</p>
                         </div>
                     </div>
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Wakil Koorcam</h4>
-                        <span>Defia Aini Rindu</span>
+                        <span>Defia Aini Rindu<br><small>(PGSD - Reg)</small></span>
                         <div class="jobdesk-dropdown">
                             <p><strong>Tugas Utama:</strong> Menjadi koordinator operasional lapangan yang standby di desa pada siang hari, serta menggantikan posisi saat koorcam tidak bisa hadir.</p>
                         </div>
                     </div>
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Sekretaris 1</h4>
-                        <span>Wafiq Mawardah</span>
+                        <span>Wafiq Mawardah<br><small>(PGSD - Reg)</small></span>
                         <div class="jobdesk-dropdown">
                             <p><strong>Tugas Utama:</strong> Memegang logbook, mencatat absensi fisik, dan notulensi rapat harian di lokasi.</p>
                         </div>
                     </div>
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Sekretaris 2</h4>
-                        <span>Mohamad Fadhli Yasir M.</span>
+                        <span>Mohamad Fadhli Yasir Muttaqin<br><small>(T. Informatika - Non Reg)</small></span>
                         <div class="jobdesk-dropdown">
                             <p><strong>Tugas Utama:</strong> Menyusun draf laporan resmi, persuratan, dan menggabungkan dokumen/laporan secara manual menjadi satu arsip final di malam hari.</p>
                         </div>
                     </div>
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Bendahara 1</h4>
-                        <span>Defia Aini Rindu</span>
+                        <span>Defia Aini Rindu<br><small>(PGSD - Reg)</small></span>
                         <div class="jobdesk-dropdown">
                             <p><strong>Tugas Utama:</strong> Mengelola kas kecil untuk kebutuhan operasional harian kelompok di siang hari.</p>
                         </div>
                     </div>
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Bendahara 2</h4>
-                        <span>Mutiara Claudia</span>
+                        <span>Mutiara Claudia<br><small>(Manajemen - Non Reg)</small></span>
                         <div class="jobdesk-dropdown">
                             <p><strong>Tugas Utama:</strong> Mengelola kas besar, iuran anggota, dan Rencana Anggaran Biaya (RAB) program kerja akhir pekan.</p>
                         </div>
@@ -112,78 +133,139 @@
                 </div>
             </div>
 
+            <!-- Field Divisions Group -->
             <div class="org-group">
                 <h3>Divisi Lapangan</h3>
                 <div class="structure-grid">
+                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
-                        <h4>Divisi HUMAS</h4>
+                        <h4>Divisi HUMAS (Nara Sinergi)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
                         <div class="jobdesk-dropdown">
-                            <p><strong>Tugas:</strong> Menjalin silaturahmi dengan warga, birokrasi lapangan, melobi sponsor, donatur UMKM.</p>
-                            <p><strong>Anggota:</strong> Anggi, Rafi, Aliya, Alfi</p>
+                            <p><strong>Tugas Utama:</strong> Menjalin silaturahmi (sowan) dan komunikasi harian dengan perangkat desa serta warga. Memfasilitasi birokrasi lapangan harian sekaligus menyuplai data survei infrastruktur dari desa. Melobi sponsor, donatur, dan merancang proposal kemitraan UMKM/DUDIKA.</p>
+                            <p><strong>Anggota:</strong></p>
+                            <ul>
+                                <li>Anggi Ni'matu Maulana (PGSD - Reg)</li>
+                                <li>Rafi Ardiarta Wijaya (T. Sipil - Reg)</li>
+                                <li>Aliya Lathifah Mahiza (Akuntansi - Non Reg)</li>
+                                <li>Alfi Mutiara (Akuntansi - Non Reg)</li>
+                            </ul>
                         </div>
                     </div>
+                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
-                        <h4>Divisi ACARA</h4>
+                        <h4>Divisi ACARA (Cira Laksana)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
                         <div class="jobdesk-dropdown">
-                            <p><strong>Tugas:</strong> Mengonsep jadwal acara, rundown, mengurus perizinan event, kelayakan lokasi, memastikan kehadiran tamu undangan.</p>
-                            <p><strong>Anggota:</strong> Dwi Syalva, Puput, Sri Devi, Mei Riski</p>
+                            <p><strong>Tugas Utama:</strong> Mengecek kelayakan lokasi acara di siang hari dan mengawal jalannya rundown saat hari H. Mengonsep jadwal acara, rundown, dan mengurus perizinan event massal lintas desa dari balik layar. Merancang alur kegiatan, memastikan kehadiran pengisi materi/tamu undangan, dan kelancaran birokrasi acara.</p>
+                            <p><strong>Anggota:</strong></p>
+                            <ul>
+                                <li>Dwi Syalva Oktavianni (PGSD - Reg)</li>
+                                <li>Puput Ayu Permatasari (Manajemen - Non Reg)</li>
+                                <li>Sri Devi Agustini (Manajemen - Non Reg)</li>
+                                <li>Mei Riski (PGSD - Non Reg)</li>
+                            </ul>
                         </div>
                     </div>
+                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
-                        <h4>Divisi PERKAB</h4>
+                        <h4>Divisi PERKAB (Tata Sarana)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
                         <div class="jobdesk-dropdown">
-                            <p><strong>Tugas:</strong> Menyusun daftar kebutuhan logistik, mobilisasi barang berat, keamanan, penataan tempat.</p>
-                            <p><strong>Anggota:</strong> Isni, Siti Nur Janah, Hamdan, Handoyo, Miftakhussurur</p>
+                            <p><strong>Tugas Utama:</strong> Menyusun daftar kebutuhan dan pernak-pernik logistik acara kelompok. Mengatur administrasi peminjaman dan penyewaan alat pendukung event. Mengeksekusi mobilisasi barang berat, penataan tempat, dan pengamanan saat hari H di akhir pekan. Memastikan seluruh properti siap pakai.</p>
+                            <p><strong>Anggota:</strong></p>
+                            <ul>
+                                <li>Isni Yuniawati (Manajemen - Non Reg)</li>
+                                <li>Siti Nur Janah (Manajemen - Non Reg)</li>
+                                <li>Hamdan Bahtiar (Manajemen - Non Reg)</li>
+                                <li>Handoyo Penasworo (T. Sipil - Non Reg)</li>
+                                <li>Miftakhussurur (T. Informatika - Non Reg)</li>
+                            </ul>
                         </div>
                     </div>
+                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
-                        <h4>Divisi PDD</h4>
+                        <h4>Divisi PDD (Reka Cipta)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
                         <div class="jobdesk-dropdown">
-                            <p><strong>Tugas:</strong> Dokumentasi kegiatan, publikasi media sosial, membuat Masterplan RAB malam hari, poster, dan video.</p>
-                            <p><strong>Anggota:</strong> Mutia, Miftakhussurur, Gita, Aisyah</p>
+                            <p><strong>Tugas Utama:</strong> Mendokumentasikan setiap kegiatan dan survei di siang hari dan hari kerja, mendokumentasikan kegiatan event akhir pekan dan mengelola publikasi media sosial kelompok. Menerima data survei lapangan untuk dieksekusi menjadi Masterplan dan RAB di malam hari. Membuat Video, Poster, Desain, Media.</p>
+                            <p><strong>Anggota:</strong></p>
+                            <ul>
+                                <li>Mutia Dwi Fadika (Manajemen - Reg)</li>
+                                <li>Miftakhussurur (T. Informatika - Non Reg)</li>
+                                <li>Gita Natasya (PGSD - Non Reg)</li>
+                                <li>Aisyah Romadona (T. Sipil - Non Reg)</li>
+                            </ul>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="org-note">
+                    <p><strong>CATATAN:</strong> Tugas Utama hanya sebagai pondasi di kondisi dan skenario paling ideal, setiap anggota nanti saling bekerja sama apabila ada yang kesulitan.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SECTION 4: Rules & Regulations -->
     <section id="rules-regulation" class="content-section rules-section">
         <div class="section-container">
             <h2 class="section-title">Tata Tertib KKN</h2>
             
             <div class="core-principle-box">
                 <h3>Prinsip Dasar</h3>
-                <p>Solidaritas, Keadilan, Tanggung Jawab, dan Menjaga Nama Baik Almamater. Tidak ada pembedaan kasta kelas reguler maupun non-reguler. Semua bekerja untuk satu bendera kelompok.</p>
+                <p>Solidaritas, Keadilan, Tanggung Jawab, dan Menjaga Nama Baik Almamater. Tidak ada pembedaan kasta antara kelas reguler maupun non-reguler, serta tidak ada ego program studi. Semua bekerja untuk satu bendera kelompok.</p>
             </div>
             
             <div class="rules-accordion-wrapper">
-                <button class="accordion-trigger">BAB I: KEHADIRAN & WAKTU</button>
+                
+                <button class="accordion-trigger">BAB I: KEHADIRAN & PEMBAGIAN WAKTU</button>
                 <div class="accordion-content">
-                    <p><strong>1. Jadwal:</strong> Kelas non-reguler wajib menyetorkan jadwal kerja ke Kordes maksimal Minggu malam untuk ploting tugas.</p>
-                    <p><strong>2. Subsidi Silang:</strong> Kelas reguler fokus proker siang. Kelas non-reguler fokus logistik/laporan malam dan wajib full team di akhir pekan.</p>
-                    <p><strong>3. Izin:</strong> Meninggalkan posko wajib lapor Ketua/Kordes. Jika darurat, lapor di grup WA.</p>
+                    <p><strong>1. Transparansi Jadwal:</strong> Anggota kelas non-reguler (yang bekerja) sebisa mungkin menyetorkan jadwal kerja kepada Sekretaris/Kordes maksimal setiap hari Minggu malam untuk ploting tugas satu minggu ke depan.</p>
+                    <p><strong>2. Keadilan Kontribusi (Subsidi Silang):</strong> Anggota reguler berfokus pada eksekusi proker fisik dan observasi lapangan di jam kerja (pagi–sore). Anggota non-reguler wajib mengambil porsi lebih pada persiapan logistik, penyusunan laporan, desain, atau rapat konsolidasi di malam hari, serta wajib turun penuh (full team) pada acara puncak di akhir pekan (Sabtu-Minggu).</p>
+                    <p><strong>3. Izin & Darurat:</strong> Meninggalkan posko atau wilayah KKN (Cipelem/Rancawuluh) untuk urusan pribadi wajib lapor dan meminta izin kepada Kordes / Ketua. Jika darurat, lapor di grup WhatsApp koordinasi.</p>
                 </div>
                 
                 <button class="accordion-trigger">BAB II: TATA KEHIDUPAN POSKO</button>
                 <div class="accordion-content">
-                    <p><strong>1. Jam Malam:</strong> Terima tamu maksimal 21.00 WIB. Lewat 22.00 WIB dilarang berisik.</p>
-                    <p><strong>2. Area Privat:</strong> Kamar tidur dilarang untuk lawan jenis dalam kondisi apa pun. Kumpul hanya di ruang tamu.</p>
+                    <p><strong>1. Jam Malam & Ketenangan:</strong> Batas maksimal penerimaan tamu luar (selain warga desa yang darurat) adalah pukul 21.00 WIB. Lewat dari pukul 22.00 WIB, turunkan volume suara (mengobrol, musik, rapat) untuk menghargai tetangga posko.</p>
+                    <p><strong>2. Batas Area Privat:</strong> Kamar tidur laki-laki dan perempuan adalah area terlarang bagi lawan jenis dalam kondisi apa pun. Rapat dan kumpul kelompok hanya dilakukan di ruang tengah/ruang tamu.</p>
+                    <p><strong>3. Inventaris Posko:</strong> Peralatan posko setelah digunakan, saat ingin menggunakan untuk proker individu atau keperluan pribadi wajib meminta izin ke pemilik / anggota lain dan wajib dikembalikan ke tempat semula dan dijaga bersama. Kehilangan barang kelompok akibat kelalaian pribadi menjadi tanggung jawab individu tersebut.</p>
                 </div>
                 
-                <button class="accordion-trigger">BAB III: PROGRAM KERJA</button>
+                <button class="accordion-trigger">BAB III: PELAKSANAAN PROGRAM KERJA</button>
                 <div class="accordion-content">
-                    <p><strong>1. Fokus 2 Desa:</strong> Dilarang membandingkan fasilitas Cipelem dan Rancawuluh di depan warga.</p>
-                    <p><strong>2. Efisiensi Rapat:</strong> Maksimal 60 menit. Fokus pada solusi, bukan perdebatan panjang.</p>
+                    <p><strong>1. Fokus 2 Desa (Adil & Merata):</strong> Seluruh anggota wajib menjaga lisan dan sikap agar tidak membanding-bandingkan kualitas/fasilitas antara Desa Cipelem dan Desa Rancawuluh di hadapan warga. Kedua desa adalah prioritas utama.</p>
+                    <p><strong>2. Lintas Kompetensi (Anti Ego Sektoral):</strong> Meskipun ada penanggung jawab per proker (berdasarkan prodi), saat di lapangan semua anggota adalah pelaksana.</p>
+                    <p><strong>3. Standar Rapat (Efisiensi):</strong> Rapat evaluasi atau koordinasi maksimal berdurasi 60 menit. Fokus pada: Apa masalahnya hari ini? Apa target besok? Siapa penanggung jawabnya? Hindari debat tanpa solusi.</p>
                 </div>
+                
+                <button class="accordion-trigger">BAB IV: ETIKA SOSIAL & PROTOKOLER</button>
+                <div class="accordion-content">
+                    <p><strong>1. Interaksi Warga (3S):</strong> Wajib menerapkan Senyum, Sapa, dan Salam kepada warga setiap kali keluar posko di Rancawuluh maupun saat melintas/bekerja di Cipelem.</p>
+                    <p><strong>2. Protokol VIP:</strong> Saat sowan, rapat di balai desa, atau menerima kunjungan perangkat desa di posko, wajib mengenakan Atribut KKN dan bawahan rapi (tidak memakai celana pendek/jeans robek/sandal jepit). Gunakan bahasa yang sopan (bisa disesuaikan dengan kearifan lokal jika menguasai bahasa daerah setempat), tidak memotong pembicaraan, dan selalu posisikan diri sebagai pelajar yang siap dibimbing.</p>
+                    <p><strong>3. Batas Berbaur:</strong> Bergaul dengan pemuda karang taruna atau warga sangat disarankan, namun dilarang keras ikut campur dalam urusan politik desa, konflik antarwarga, atau perdebatan sensitif (SARA).</p>
+                    <p><strong>4. Etika Media Sosial:</strong> Dilarang mengunggah konten (foto/video) internal posko yang bersifat kurang pantas, atau mengeluhkan kondisi desa sasaran di media sosial pribadi.</p>
+                </div>
+                
+                <button class="accordion-trigger">BAB V: PENYELESAIAN KONFLIK</button>
+                <div class="accordion-content">
+                    <p><strong>1. Asas Kekeluargaan:</strong> Jika terjadi gesekan internal (masalah piket, miskomunikasi, beban kerja), selesaikan secara empat mata terlebih dahulu.</p>
+                    <p><strong>2. Eskalasi:</strong> Jika tidak selesai, Kordes / Korcam / Ketua bertindak sebagai mediator yang netral. Dilarang membuat "kubu-kubuan" di dalam posko. Keputusan Kordes / Korcam / Ketua (yang diambil melalui pertimbangan logis) bersifat mengikat demi kelancaran KKN.</p>
+                </div>
+                
+                <button class="accordion-trigger">BAB VI: KONSEKUENSI DAN TEGURAN</button>
+                <div class="accordion-content">
+                    <p><em>Asas Utama: Keterbatasan waktu karena urusan pekerjaan (bagi kelas non-reguler) akan sangat dimaklumi selama dikomunikasikan sebelumnya. Namun, kelalaian tugas akibat "hilang tanpa kabar" (ghosting) atau lepas tanggung jawab secara sengaja akan diproses melalui sistem teguran bertahap berikut:</em></p>
+                    <p><strong>1. Teguran Lisan Privat:</strong> Berlaku untuk pelanggaran ringan (misal: lupa jadwal piket posko, tidak hadir rapat tanpa izin, atau tidak membalas koordinasi di grup WA lebih dari 1x24 jam tanpa alasan jelas). Teguran dilakukan secara empat mata (japri) oleh Ketua Pelaksana untuk menanyakan kendala yang sedang dihadapi dan mengingatkan kembali komitmen awal.</p>
+                    <p><strong>2. Forum Evaluasi Terbuka:</strong> Berlaku untuk pelanggaran sedang hingga berat yang mulai mengganggu kelancaran proker atau keharmonisan kelompok (misal: terus-menerus lempar tanggung jawab, membuat konflik internal, atau bersikap kurang ajar kepada warga desa). Anggota yang bersangkutan akan dipanggil dalam forum rapat kelompok untuk memberikan klarifikasi terbuka, dan dicarikan solusi bersama agar beban kelompok tidak pincang.</p>
+                </div>
+                
             </div>
         </div>
     </section>
 
+    <!-- SECTION 5: Work Program -->
     <section id="work-program" class="content-section proker-section">
         <div class="section-container">
             <h2 class="section-title">Rencana Proker</h2>
@@ -202,22 +284,13 @@
         </div>
     </section>
 
-    <section id="timeline-rundown" class="content-section timeline-section">
-        <div class="section-container">
-            <h2 class="section-title">Rundown Harian (Live)</h2>
-            <p style="opacity: 0.8; margin-bottom: 30px;">Jadwal harian di bawah ini ditarik secara otomatis dari sistem Divisi Acara.</p>
-            
-            <div id="dynamicRundownContainer" class="dynamic-rundown-container">
-                <div class="loading-state">Mengambil data dari Google Sheets...⏳</div>
-            </div>
-        </div>
-    </section>
-
+    <!-- SECTION 6: Resources & Contact -->
     <section id="resources-contact" class="content-section resources-section">
         <div class="section-container">
             <h2 class="section-title">Dokumentasi & Kontak</h2>
             <p class="section-subtitle">Akses kelengkapan administrasi, aset tim, dan sosmed resmi kelompok.</p>
             
+            <!-- Official LPPM & Drive Links -->
             <div class="official-link-container">
                 <a href="https://lppm.umus.ac.id/kkn-daftar/" class="lppm-btn" target="_blank">🌐 Portal Resmi LPPM (Smart KKN)</a>
             </div>
@@ -225,6 +298,7 @@
                 <a href="https://drive.google.com" class="drive-btn" target="_blank">📂 Buka Folder Dokumentasi (G-Drive)</a>
             </div>
 
+            <!-- Social Media Group -->
             <div class="social-media-container">
                 <h3 class="social-title">Ikuti Perjalanan KKN Kami</h3>
                 <div class="social-grid">
@@ -233,6 +307,7 @@
                 </div>
             </div>
 
+            <!-- Emergency Contacts Group -->
             <h3 class="social-title" style="margin-top: 50px;">Kontak Darurat</h3>
             <div class="contact-grid">
                 <a href="https://wa.me/628123456789" class="whatsapp-btn" target="_blank">📞 Ketua Tim / Koorcam</a>
