@@ -24,6 +24,9 @@
     
     --bg-resources: #0f172a;
     --text-resources: #f8fafc;
+    
+    --bg-pattern: rgba(0, 0, 0, 0.05); 
+
 }
 
 /* DARK MODE PALETTE CONFIGURATION */
@@ -50,6 +53,8 @@ body.dark-mode {
     
     --bg-resources: #020617;
     --text-resources: #f1f5f9;
+
+    --bg-pattern: rgba(255, 255, 255, 0.04);
 }
 
 * {
@@ -66,6 +71,11 @@ body {
     font-family: var(--font-main);
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
+    
+    /* FITUR BARU: Latar Belakang Pola Titik (Dot Pattern) */
+    background-color: var(--bg-structure);
+    background-image: radial-gradient(var(--bg-pattern) 1.5px, transparent 1.5px);
+    background-size: 25px 25px;
 }
 
 .content-section {
@@ -635,3 +645,79 @@ body.dark-mode .realtime-date {
     transform: translateX(10px);
     visibility: hidden;
 }
+
+/* --- FITUR BARU: TAUTAN LPPM & MEDIA SOSIAL --- */
+.official-link-container {
+    margin-bottom: 30px;
+}
+
+.lppm-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    padding: 16px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.lppm-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+    color: white;
+}
+
+.social-title {
+    margin: 40px 0 20px 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+    color: white;
+}
+
+/* Warna khas Media Sosial */
+.social-btn.ig {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-btn.tiktok {
+    background: #000000;
+    color: #ffffff;
+}
+
+.social-btn.fb {
+    background: #1877F2;
+}
+
+/* Penyesuaian Tombol TikTok di Mode Gelap */
+body.dark-mode .social-btn.tiktok {
+    background: #252525;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
