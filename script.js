@@ -1,67 +1,64 @@
 /**
  * KKN Board Control Script
- * Handling Navigations, Dark Mode, Countdown, Realtime Clock, Dropdowns, and Accordions.
+ * Features: Realtime Clock, Navigation, Tooltips, Dark Mode, Countdown, Accordions, and G-Sheets Fetch.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. REALTIME CLOCK & DATE ---
+    // --- 1. REALTIME CLOCK MODULE ---
     const realtimeDateEl = document.getElementById('realtimeDate');
     
     function updateRealtimeClock() {
-        const sekarang = new Date();
+        const currentDate = new Date();
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         
-        // Format Bahasa Indonesia
-        const opsiTanggal = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const tanggalStr = sekarang.toLocaleDateString('id-ID', opsiTanggal);
-        
-        // Format Jam (HH:MM:SS)
-        const jamStr = String(sekarang.getHours()).padStart(2, '0');
-        const menitStr = String(sekarang.getMinutes()).padStart(2, '0');
-        const detikStr = String(sekarang.getSeconds()).padStart(2, '0');
+        const dateString = currentDate.toLocaleDateString('id-ID', dateOptions);
+        const hoursString = String(currentDate.getHours()).padStart(2, '0');
+        const minutesString = String(currentDate.getMinutes()).padStart(2, '0');
+        const secondsString = String(currentDate.getSeconds()).padStart(2, '0');
         
         if (realtimeDateEl) {
-            realtimeDateEl.textContent = `${tanggalStr} | ${jamStr}:${menitStr}:${detikStr} WIB`;
+            realtimeDateEl.textContent = `${dateString} | ${hoursString}:${minutesString}:${secondsString} WIB`;
         }
     }
-    
-    updateRealtimeClock(); 
-    setInterval(updateRealtimeClock, 1000); 
+    updateRealtimeClock(); // Initial call
+    setInterval(updateRealtimeClock, 1000); // Update every second
 
 
-    // --- 2. FLOATING NAVIGATION & TOOLTIP HINT ---
+    // --- 2. FLOATING MENU & TOOLTIP MODULE ---
     const menuToggle = document.getElementById('menuToggle');
     const navigationMenu = document.getElementById('navigationMenu');
     const navLinks = document.querySelectorAll('.navigation-menu ul li a');
-    
     const menuHint = document.getElementById('menuHint');
+    
     let hintTimeout;
-
-    // Petunjuk hilang otomatis setelah 4.5 detik
+    
+    // Auto-hide the tooltip hint after 4.5 seconds
     if (menuHint) {
-        hintTimeout = setTimeout(() => {
-            menuHint.classList.add('fade-out');
+        hintTimeout = setTimeout(() => { 
+            menuHint.classList.add('fade-out'); 
         }, 4500);
     }
 
-    // Toggle Menu Klik
     menuToggle.addEventListener('click', (event) => {
         event.stopPropagation();
         navigationMenu.classList.toggle('is-active');
         
-        // Hapus petunjuk seketika saat tombol ditekan
+        // Hide hint immediately if user clicks the button before timeout
         if (menuHint && !menuHint.classList.contains('fade-out')) {
             menuHint.classList.add('fade-out');
             clearTimeout(hintTimeout);
         }
     });
 
+    // Close menu when a navigation link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navigationMenu.classList.remove('is-active');
         });
     });
 
+    // Close menu when clicking outside the menu area
     document.addEventListener('click', (event) => {
         if (!navigationMenu.contains(event.target) && event.target !== menuToggle) {
             navigationMenu.classList.remove('is-active');
@@ -69,10 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 3. THEME CONTROLLER ---
+    // --- 3. DARK MODE MODULE ---
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('kknBoardTheme');
     
+    // Check local storage for existing theme preference
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
         themeToggle.textContent = '☀️ Mode Terang';
@@ -91,54 +89,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 4. COUNTDOWN TIMER ---
-    // Target akhir KKN diset pada detik terakhir tanggal 8 Agustus 2026
+    // --- 4. COUNTDOWN TIMER MODULE ---
+    // Target: End of day on August 8, 2026
     const TARGET_DATE_STRING = "August 8, 2026 23:59:59"; 
     const targetTime = new Date(TARGET_DATE_STRING).getTime();
 
     const countdownTimer = setInterval(() => {
-        const currentTime = new Date().getTime();
-        const timeDifference = targetTime - currentTime;
+        const timeDifference = targetTime - new Date().getTime();
 
         const calculatedDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         const calculatedHours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const calculatedMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         const calculatedSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
+        // Inject calculated values into HTML elements with double-digit formatting
         document.getElementById('days').textContent = String(calculatedDays).padStart(2, '0');
         document.getElementById('hours').textContent = String(calculatedHours).padStart(2, '0');
         document.getElementById('minutes').textContent = String(calculatedMinutes).padStart(2, '0');
         document.getElementById('seconds').textContent = String(calculatedSeconds).padStart(2, '0');
 
+        // Clear interval and display message when countdown finishes
         if (timeDifference < 0) {
             clearInterval(countdownTimer);
-            document.getElementById('countdownDisplay').innerHTML = "<h4 style='color: #2563eb; width: 100%;'>Masa Pengabdian KKN Telah Selesai! 🎉</h4>";
+            document.getElementById('countdownDisplay').innerHTML = "<h4 style='color: #2563eb; width: 100%;'>Masa Pengabdian KKN Selesai! 🎉</h4>";
         }
     }, 1000);
 
 
-    // --- 5. ACCORDION CONTROLLER ---
+    // --- 5. ACCORDION (RULES SECTION) MODULE ---
     const accordionTriggers = document.querySelectorAll('.accordion-trigger');
-
+    
     accordionTriggers.forEach(trigger => {
         trigger.addEventListener('click', function() {
             this.classList.toggle('is-active');
             const panel = this.nextElementSibling;
-
+            
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
-                setTimeout(() => { panel.style.borderWidth = "0"; }, 300);
             } else {
-                panel.style.borderWidth = "1px";
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
     });
 
+
+    // --- 6. GOOGLE SHEETS LIVE RUNDOWN MODULE ---
+    // IMPORTANT: Replace the string below with your actual Google Sheet ID
+    const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'; 
+    const SHEET_TITLE = 'Sheet1'; 
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${SHEET_TITLE}&tqx=out:json`;
+
+    async function fetchRundownData() {
+        const rundownContainer = document.getElementById('dynamicRundownContainer');
+        
+        try {
+            if (SHEET_ID === 'YOUR_GOOGLE_SHEET_ID_HERE') {
+                rundownContainer.innerHTML = '<p style="color:red; text-align:center;">⚠️ Sistem belum tersambung. Masukkan ID Spreadsheet di script.js</p>';
+                return;
+            }
+
+            const response = await fetch(SHEET_URL);
+            const textResponse = await response.text();
+            
+            // Extract JSON payload from the Google Visualization API response
+            const jsonString = textResponse.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/)[1];
+            const parsedData = JSON.parse(jsonString);
+
+            rundownContainer.innerHTML = ''; // Clear loading text
+
+            const rows = parsedData.table.rows;
+            
+            // Data starts at row 2 (index 0 is considered header by Google API)
+            if (!rows || rows.length === 0) {
+                 rundownContainer.innerHTML = '<p style="text-align:center;">Belum ada jadwal yang ditulis oleh Divisi Acara hari ini.</p>';
+                 return;
+            }
+
+            // Loop through each row and inject into HTML
+            rows.forEach(row => {
+                // Column A = Time, Column B = Activity, Column C = Location/PIC
+                const timeStr = (row.c[0] && row.c[0].v) ? row.c[0].v : '-';
+                const activityStr = (row.c[1] && row.c[1].v) ? row.c[1].v : 'Kegiatan Tidak Bernama';
+                const locationStr = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
+
+                const itemHTML = `
+                    <div class="rundown-item">
+                        <div class="time-badge">${timeStr}</div>
+                        <div class="rundown-detail">
+                            <h4>${activityStr}</h4>
+                            ${locationStr ? `<p>📍 ${locationStr}</p>` : ''}
+                        </div>
+                    </div>
+                `;
+                rundownContainer.innerHTML += itemHTML;
+            });
+
+        } catch (error) {
+            rundownContainer.innerHTML = '<p style="color:red; text-align:center;">⚠️ Gagal memuat jadwal. Pastikan Google Sheet diset "Anyone with the link can view".</p>';
+            console.error('Error fetching rundown data:', error);
+        }
+    }
+    
+    fetchRundownData();
 });
 
-// --- 6. DROPDOWN CONTROLLER ---
-// Fungsi ini dipanggil secara inline (onclick) pada HTML
+// --- 7. DROPDOWN (ORGANIZATION) MODULE ---
+// Defined outside DOMContentLoaded as it is triggered directly by inline HTML onclick attributes
 function toggleDropdown(element) {
     element.classList.toggle('is-open');
 }
