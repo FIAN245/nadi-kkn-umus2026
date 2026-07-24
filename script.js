@@ -133,65 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- 6. GOOGLE SHEETS LIVE RUNDOWN MODULE ---
-    // IMPORTANT: Replace the string below with your actual Google Sheet ID
-    const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'; 
-    const SHEET_TITLE = 'Sheet1'; 
-    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${SHEET_TITLE}&tqx=out:json`;
-
-    async function fetchRundownData() {
-        const rundownContainer = document.getElementById('dynamicRundownContainer');
-        
-        try {
-            if (SHEET_ID === 'YOUR_GOOGLE_SHEET_ID_HERE') {
-                rundownContainer.innerHTML = '<p style="color:red; text-align:center;">⚠️ Sistem belum tersambung. Masukkan ID Spreadsheet di script.js</p>';
-                return;
-            }
-
-            const response = await fetch(SHEET_URL);
-            const textResponse = await response.text();
-            
-            // Extract JSON payload from the Google Visualization API response
-            const jsonString = textResponse.match(/google\.visualization\.Query\.setResponse\(([\s\S\w]+)\)/)[1];
-            const parsedData = JSON.parse(jsonString);
-
-            rundownContainer.innerHTML = ''; // Clear loading text
-
-            const rows = parsedData.table.rows;
-            
-            // Data starts at row 2 (index 0 is considered header by Google API)
-            if (!rows || rows.length === 0) {
-                 rundownContainer.innerHTML = '<p style="text-align:center;">Belum ada jadwal yang ditulis oleh Divisi Acara hari ini.</p>';
-                 return;
-            }
-
-            // Loop through each row and inject into HTML
-            rows.forEach(row => {
-                // Column A = Time, Column B = Activity, Column C = Location/PIC
-                const timeStr = (row.c[0] && row.c[0].v) ? row.c[0].v : '-';
-                const activityStr = (row.c[1] && row.c[1].v) ? row.c[1].v : 'Kegiatan Tidak Bernama';
-                const locationStr = (row.c[2] && row.c[2].v) ? row.c[2].v : '';
-
-                const itemHTML = `
-                    <div class="rundown-item">
-                        <div class="time-badge">${timeStr}</div>
-                        <div class="rundown-detail">
-                            <h4>${activityStr}</h4>
-                            ${locationStr ? `<p>📍 ${locationStr}</p>` : ''}
-                        </div>
-                    </div>
-                `;
-                rundownContainer.innerHTML += itemHTML;
-            });
-
-        } catch (error) {
-            rundownContainer.innerHTML = '<p style="color:red; text-align:center;">⚠️ Gagal memuat jadwal. Pastikan Google Sheet diset "Anyone with the link can view".</p>';
-            console.error('Error fetching rundown data:', error);
-        }
-    }
+// --- 6. PROGRESS BAR ANIMATION MODULE ---
+    const progressFills = document.querySelectorAll('.progress-fill');
     
-    fetchRundownData();
-});
+    // Memberikan sedikit jeda sebelum animasi bar meluncur agar terlihat oleh pengguna
+    setTimeout(() => {
+        progressFills.forEach(fill => {
+            const targetWidth = fill.getAttribute('data-target');
+            // Memicu animasi CSS dengan mengubah width sesuai data-target HTML
+            fill.style.width = targetWidth + '%';
+        });
+    }, 300);
 
 // --- 7. DROPDOWN (ORGANIZATION) MODULE ---
 // Defined outside DOMContentLoaded as it is triggered directly by inline HTML onclick attributes
