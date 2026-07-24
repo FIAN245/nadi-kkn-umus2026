@@ -192,14 +192,68 @@ body.dark-mode .countdown-box { background: rgba(15, 23, 42, 0.4); }
 .proker-card { background: var(--card-proker); padding: 24px; border-radius: 16px; }
 body.dark-mode .proker-card { color: #f0fdf4; }
 
-/* --- SECTION 5: DYNAMIC TIMELINE --- */
-.timeline-section { background: var(--bg-timeline); color: var(--text-timeline); }
-.dynamic-rundown-container { display: flex; flex-direction: column; gap: 12px; }
-.rundown-item { background: var(--card-structure); padding: 16px; border-radius: 12px; display: flex; gap: 20px; align-items: center; border-left: 4px solid var(--primary-accent); }
-.time-badge { background: var(--primary-accent); color: white; padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; min-width: 100px; text-align: center; }
-.rundown-detail h4 { font-size: 1.1rem; margin-bottom: 4px; }
-.rundown-detail p { font-size: 0.9rem; opacity: 0.8; }
-.loading-state { text-align: center; padding: 30px; font-weight: 600; opacity: 0.7; }
+/* --- SECTION 2: PROGRESS PROKER --- */
+.progress-section { 
+    background: var(--bg-timeline); 
+    color: var(--text-timeline); 
+}
+
+.progress-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+}
+
+.progress-card { 
+    background: var(--card-structure); 
+    padding: 24px; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02); 
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+body.dark-mode .progress-card {
+    border-color: rgba(255,255,255,0.05);
+}
+
+.progress-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+
+.progress-header h4 { 
+    font-size: 1.15rem; 
+    color: var(--primary-accent); 
+    margin: 0; 
+}
+
+.progress-text { 
+    font-weight: 700; 
+    font-size: 1.2rem; 
+}
+
+.progress-track { 
+    width: 100%; 
+    height: 14px; 
+    background: rgba(0,0,0,0.08); 
+    border-radius: 10px; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+body.dark-mode .progress-track { 
+    background: rgba(255,255,255,0.1); 
+}
+
+.progress-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, #60a5fa, #2563eb); 
+    width: 0%; /* Di-set 0% default, akan diisi otomatis oleh JS */
+    border-radius: 10px; 
+    transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); /* Efek animasi meluncur elegan */
+}
 
 /* --- SECTION 6: RESOURCES, SOCIALS & CONTACT --- */
 .resources-section { background: var(--bg-resources); color: var(--text-resources); text-align: center; }
