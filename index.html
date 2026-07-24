@@ -22,7 +22,7 @@
         <nav id="navigationMenu" class="navigation-menu">
             <ul>
                 <li><a href="#hero-countdown">Beranda & Waktu</a></li>
-                <li><a href="#timeline-rundown">Rundown Harian</a></li>
+                <li><a href="#proker-progress">Progress Proker</a></li>
                 <li><a href="#organization-structure">Struktur Organisasi</a></li>
                 <li><a href="#rules-regulation">Tata Tertib</a></li>
                 <li><a href="#work-program">Rencana Proker</a></li>
@@ -61,14 +61,53 @@
         </div>
     </section>
 
-    <!-- SECTION 2: Dynamic Google Sheets Timeline (Dipindah ke atas) -->
-    <section id="timeline-rundown" class="content-section timeline-section">
+   <!-- SECTION 2: Progress Program Kerja -->
+    <section id="proker-progress" class="content-section progress-section">
         <div class="section-container">
-            <h2 class="section-title">Rundown Harian (Live)</h2>
-            <p style="opacity: 0.8; margin-bottom: 30px;">Jadwal harian di bawah ini ditarik secara otomatis dari Google Sheets Divisi Acara.</p>
-            
-            <div id="dynamicRundownContainer" class="dynamic-rundown-container">
-                <div class="loading-state">Mengambil data dari Google Sheets...⏳</div>
+            <h2 class="section-title">Progress Proker Kelompok</h2>
+            <p style="opacity: 0.8; margin-bottom: 30px;">Pantau sejauh mana tingkat penyelesaian program kerja utama kelompok kita di lapangan.</p>
+
+            <div class="progress-grid">
+                
+                <!-- Proker 1 -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Digitalisasi UMKM Desa</h4>
+                        <!-- Ubah angka di bawah ini untuk teks persentase yang tampil -->
+                        <span class="progress-text">75%</span>
+                    </div>
+                    <div class="progress-track">
+                        <!-- Ubah angka pada data-target="75" untuk mengatur panjang bar warnanya -->
+                        <div class="progress-fill" data-target="75"></div>
+                    </div>
+                </div>
+
+                <!-- Proker 2 -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Sosialisasi Sanitasi Sehat</h4>
+                        <!-- Ubah angka di bawah ini untuk teks persentase yang tampil -->
+                        <span class="progress-text">40%</span>
+                    </div>
+                    <div class="progress-track">
+                        <!-- Ubah angka pada data-target="40" untuk mengatur panjang bar warnanya -->
+                        <div class="progress-fill" data-target="40"></div>
+                    </div>
+                </div>
+
+                <!-- Proker 3 -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Pembuatan Plang Jalan</h4>
+                        <!-- Ubah angka di bawah ini untuk teks persentase yang tampil -->
+                        <span class="progress-text">90%</span>
+                    </div>
+                    <div class="progress-track">
+                        <!-- Ubah angka pada data-target="90" untuk mengatur panjang bar warnanya -->
+                        <div class="progress-fill" data-target="90"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
