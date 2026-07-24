@@ -1,6 +1,6 @@
 /**
  * KKN Board Control Script
- * Features: Realtime Clock, Navigation, Tooltips, Dark Mode, Countdown, Accordions, and G-Sheets Fetch.
+ * Features: Realtime Clock, Navigation, Tooltips, Dark Mode, Countdown, Accordions, and Progress Bars.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -132,18 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-// --- 6. PROGRESS BAR ANIMATION MODULE ---
+    // --- 6. PROGRESS BAR ANIMATION MODULE ---
     const progressFills = document.querySelectorAll('.progress-fill');
     
-    // Memberikan sedikit jeda sebelum animasi bar meluncur agar terlihat oleh pengguna
+    // Add slight delay before starting progress bar animation for a smooth visual effect
     setTimeout(() => {
         progressFills.forEach(fill => {
             const targetWidth = fill.getAttribute('data-target');
-            // Memicu animasi CSS dengan mengubah width sesuai data-target HTML
+            // Trigger CSS transition by setting the width according to data-target
             fill.style.width = targetWidth + '%';
         });
     }, 300);
+
+});
 
 // --- 7. DROPDOWN (ORGANIZATION) MODULE ---
 // Defined outside DOMContentLoaded as it is triggered directly by inline HTML onclick attributes
