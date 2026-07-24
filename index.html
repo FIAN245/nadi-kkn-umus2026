@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Papan Informasi KKN UMUS 2026</title>
-    <!-- Google Fonts -->
+    <!-- Google Fonts Integration -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -22,20 +22,19 @@
         <nav id="navigationMenu" class="navigation-menu">
             <ul>
                 <li><a href="#hero-countdown">Beranda & Waktu</a></li>
-                <li><a href="#proker-progress">Progress Proker</a></li>
                 <li><a href="#organization-structure">Struktur Organisasi</a></li>
                 <li><a href="#rules-regulation">Tata Tertib</a></li>
-                <li><a href="#work-program">Rencana Proker</a></li>
+                <li><a href="#proker-progress">Progress Proker</a></li>
                 <li><a href="#resources-contact">Dokumentasi & Kontak</a></li>
             </ul>
         </nav>
     </div>
 
-    <!-- SECTION 1: Hero & Countdown -->
+    <!-- SECTION 1: Hero, Logo, Realtime Clock & Countdown -->
     <section id="hero-countdown" class="content-section hero-section">
         <div class="section-container">
             
-            <!-- SVG Logo Container (Replace the inner SVG with your actual logo code) -->
+            <!-- SVG Logo Container (Adapts color based on theme) -->
             <div class="logo-container">
                 <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill="currentColor" d="M12 2L2 22h20L12 2zm0 3.83L18.17 20H5.83L12 5.83z"/>
@@ -61,58 +60,7 @@
         </div>
     </section>
 
-   <!-- SECTION 2: Progress Program Kerja -->
-    <section id="proker-progress" class="content-section progress-section">
-        <div class="section-container">
-            <h2 class="section-title">Progress Proker Kelompok</h2>
-            <p style="opacity: 0.8; margin-bottom: 30px;">Pantau sejauh mana tingkat penyelesaian program kerja utama kelompok kita di lapangan.</p>
-
-            <div class="progress-grid">
-                
-                <!-- Proker 1 -->
-                <div class="progress-card">
-                    <div class="progress-header">
-                        <h4>Digitalisasi UMKM Desa</h4>
-                        <!-- Ubah angka di bawah ini untuk teks persentase yang tampil -->
-                        <span class="progress-text">75%</span>
-                    </div>
-                    <div class="progress-track">
-                        <!-- Ubah angka pada data-target="75" untuk mengatur panjang bar warnanya -->
-                        <div class="progress-fill" data-target="75"></div>
-                    </div>
-                </div>
-
-                <!-- Proker 2 -->
-                <div class="progress-card">
-                    <div class="progress-header">
-                        <h4>Sosialisasi Sanitasi Sehat</h4>
-                        <!-- Ubah angka di bawah ini untuk teks persentase yang tampil -->
-                        <span class="progress-text">40%</span>
-                    </div>
-                    <div class="progress-track">
-                        <!-- Ubah angka pada data-target="40" untuk mengatur panjang bar warnanya -->
-                        <div class="progress-fill" data-target="40"></div>
-                    </div>
-                </div>
-
-                <!-- Proker 3 -->
-                <div class="progress-card">
-                    <div class="progress-header">
-                        <h4>Pembuatan Plang Jalan</h4>
-                        <!-- Ubah angka di bawah ini untuk teks persentase yang tampil -->
-                        <span class="progress-text">90%</span>
-                    </div>
-                    <div class="progress-track">
-                        <!-- Ubah angka pada data-target="90" untuk mengatur panjang bar warnanya -->
-                        <div class="progress-fill" data-target="90"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: Organization Structure -->
+    <!-- SECTION 2: Organization Structure (Dropdowns) -->
     <section id="organization-structure" class="content-section structure-section">
         <div class="section-container">
             <h2 class="section-title">Struktur Organisasi</h2>
@@ -176,7 +124,6 @@
             <div class="org-group">
                 <h3>Divisi Lapangan</h3>
                 <div class="structure-grid">
-                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Divisi HUMAS (Nara Sinergi)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
@@ -191,7 +138,6 @@
                             </ul>
                         </div>
                     </div>
-                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Divisi ACARA (Cira Laksana)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
@@ -206,7 +152,6 @@
                             </ul>
                         </div>
                     </div>
-                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Divisi PERKAB (Tata Sarana)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
@@ -222,7 +167,6 @@
                             </ul>
                         </div>
                     </div>
-                    
                     <div class="structure-card" onclick="toggleDropdown(this)">
                         <h4>Divisi PDD (Reka Cipta)</h4>
                         <span>Lihat Tugas & Anggota ▾</span>
@@ -237,7 +181,6 @@
                             </ul>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="org-note">
                     <p><strong>CATATAN:</strong> Tugas Utama hanya sebagai pondasi di kondisi dan skenario paling ideal, setiap anggota nanti saling bekerja sama apabila ada yang kesulitan.</p>
@@ -246,7 +189,7 @@
         </div>
     </section>
 
-    <!-- SECTION 4: Rules & Regulations -->
+    <!-- SECTION 3: Rules & Regulations (Accordions) -->
     <section id="rules-regulation" class="content-section rules-section">
         <div class="section-container">
             <h2 class="section-title">Tata Tertib KKN</h2>
@@ -257,7 +200,6 @@
             </div>
             
             <div class="rules-accordion-wrapper">
-                
                 <button class="accordion-trigger">BAB I: KEHADIRAN & PEMBAGIAN WAKTU</button>
                 <div class="accordion-content">
                     <p><strong>1. Transparansi Jadwal:</strong> Anggota kelas non-reguler (yang bekerja) sebisa mungkin menyetorkan jadwal kerja kepada Sekretaris/Kordes maksimal setiap hari Minggu malam untuk ploting tugas satu minggu ke depan.</p>
@@ -282,7 +224,7 @@
                 <button class="accordion-trigger">BAB IV: ETIKA SOSIAL & PROTOKOLER</button>
                 <div class="accordion-content">
                     <p><strong>1. Interaksi Warga (3S):</strong> Wajib menerapkan Senyum, Sapa, dan Salam kepada warga setiap kali keluar posko di Rancawuluh maupun saat melintas/bekerja di Cipelem.</p>
-                    <p><strong>2. Protokol VIP:</strong> Saat sowan, rapat di balai desa, atau menerima kunjungan perangkat desa di posko, wajib mengenakan Atribut KKN dan bawahan rapi (tidak memakai celana pendek/jeans robek/sandal jepit). Gunakan bahasa yang sopan (bisa disesuaikan dengan kearifan lokal jika menguasai bahasa daerah setempat), tidak memotong pembicaraan, dan selalu posisikan diri sebagai pelajar yang siap dibimbing.</p>
+                    <p><strong>2. Protokol VIP:</strong> Saat sowan, rapat di balai desa, atau menerima kunjungan perangkat desa di posko, wajib mengenakan Atribut KKN dan bawahan rapi (tidak memakai celana pendek/jeans robek/sandal jepit). Gunakan bahasa yang sopan, tidak memotong pembicaraan, dan selalu posisikan diri sebagai pelajar yang siap dibimbing.</p>
                     <p><strong>3. Batas Berbaur:</strong> Bergaul dengan pemuda karang taruna atau warga sangat disarankan, namun dilarang keras ikut campur dalam urusan politik desa, konflik antarwarga, atau perdebatan sensitif (SARA).</p>
                     <p><strong>4. Etika Media Sosial:</strong> Dilarang mengunggah konten (foto/video) internal posko yang bersifat kurang pantas, atau mengeluhkan kondisi desa sasaran di media sosial pribadi.</p>
                 </div>
@@ -290,40 +232,65 @@
                 <button class="accordion-trigger">BAB V: PENYELESAIAN KONFLIK</button>
                 <div class="accordion-content">
                     <p><strong>1. Asas Kekeluargaan:</strong> Jika terjadi gesekan internal (masalah piket, miskomunikasi, beban kerja), selesaikan secara empat mata terlebih dahulu.</p>
-                    <p><strong>2. Eskalasi:</strong> Jika tidak selesai, Kordes / Korcam / Ketua bertindak sebagai mediator yang netral. Dilarang membuat "kubu-kubuan" di dalam posko. Keputusan Kordes / Korcam / Ketua (yang diambil melalui pertimbangan logis) bersifat mengikat demi kelancaran KKN.</p>
+                    <p><strong>2. Eskalasi:</strong> Jika tidak selesai, Kordes / Korcam / Ketua bertindak sebagai mediator yang netral. Dilarang membuat "kubu-kubuan" di dalam posko. Keputusan Kordes / Korcam / Ketua bersifat mengikat demi kelancaran KKN.</p>
                 </div>
                 
                 <button class="accordion-trigger">BAB VI: KONSEKUENSI DAN TEGURAN</button>
                 <div class="accordion-content">
                     <p><em>Asas Utama: Keterbatasan waktu karena urusan pekerjaan (bagi kelas non-reguler) akan sangat dimaklumi selama dikomunikasikan sebelumnya. Namun, kelalaian tugas akibat "hilang tanpa kabar" (ghosting) atau lepas tanggung jawab secara sengaja akan diproses melalui sistem teguran bertahap berikut:</em></p>
-                    <p><strong>1. Teguran Lisan Privat:</strong> Berlaku untuk pelanggaran ringan (misal: lupa jadwal piket posko, tidak hadir rapat tanpa izin, atau tidak membalas koordinasi di grup WA lebih dari 1x24 jam tanpa alasan jelas). Teguran dilakukan secara empat mata (japri) oleh Ketua Pelaksana untuk menanyakan kendala yang sedang dihadapi dan mengingatkan kembali komitmen awal.</p>
+                    <p><strong>1. Teguran Lisan Privat:</strong> Berlaku untuk pelanggaran ringan (misal: lupa jadwal piket posko, tidak hadir rapat tanpa izin). Teguran dilakukan secara empat mata (japri) oleh Ketua Pelaksana untuk menanyakan kendala yang sedang dihadapi dan mengingatkan kembali komitmen awal.</p>
                     <p><strong>2. Forum Evaluasi Terbuka:</strong> Berlaku untuk pelanggaran sedang hingga berat yang mulai mengganggu kelancaran proker atau keharmonisan kelompok (misal: terus-menerus lempar tanggung jawab, membuat konflik internal, atau bersikap kurang ajar kepada warga desa). Anggota yang bersangkutan akan dipanggil dalam forum rapat kelompok untuk memberikan klarifikasi terbuka, dan dicarikan solusi bersama agar beban kelompok tidak pincang.</p>
                 </div>
-                
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: Work Program -->
-    <section id="work-program" class="content-section proker-section">
+    <!-- SECTION 4: Progress Program Kerja -->
+    <section id="proker-progress" class="content-section progress-section">
         <div class="section-container">
-            <h2 class="section-title">Rencana Proker</h2>
-            <div class="proker-grid">
-                <div class="proker-card">
-                    <span class="proker-type">Proker Utama</span>
-                    <h4>Digitalisasi UMKM Desa</h4>
-                    <p>Pelatihan pembuatan toko online dan pemasaran digital untuk pengrajin lokal desa.</p>
+            <h2 class="section-title">Progress Proker Kelompok</h2>
+            <p style="opacity: 0.8; margin-bottom: 30px;">Pantau sejauh mana tingkat penyelesaian program kerja utama kelompok kita di lapangan.</p>
+
+            <div class="progress-grid">
+                
+                <!-- Proker 1 -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Digitalisasi UMKM Desa</h4>
+                        <span class="progress-text">75%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" data-target="75"></div>
+                    </div>
                 </div>
-                <div class="proker-card">
-                    <span class="proker-type">Proker Utama</span>
-                    <h4>Sosialisasi Sanitasi Sehat</h4>
-                    <p>Edukasi pengolahan sampah rumah tangga dan pengadaan tempat sampah terpilah.</p>
+
+                <!-- Proker 2 -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Sosialisasi Sanitasi Sehat</h4>
+                        <span class="progress-text">40%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" data-target="40"></div>
+                    </div>
                 </div>
+
+                <!-- Proker 3 -->
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <h4>Pembuatan Plang Jalan</h4>
+                        <span class="progress-text">90%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" data-target="90"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: Resources & Contact -->
+    <!-- SECTION 5: Resources & Contact -->
     <section id="resources-contact" class="content-section resources-section">
         <div class="section-container">
             <h2 class="section-title">Dokumentasi & Kontak</h2>
